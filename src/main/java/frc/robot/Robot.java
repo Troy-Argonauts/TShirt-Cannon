@@ -8,6 +8,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.*;
 
 
 
@@ -20,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot
 {
     private Command autonomousCommand;
-    
+    public static DriveTrain driveTrain;
     private RobotContainer robotContainer;
     
     
@@ -31,8 +32,7 @@ public class Robot extends TimedRobot
     @Override
     public void robotInit()
     {
-        // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-        // autonomous chooser on the dashboard.
+        driveTrain = new DriveTrain();
         robotContainer = new RobotContainer();
     }
     
@@ -66,35 +66,15 @@ public class Robot extends TimedRobot
     
     /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
     @Override
-    public void autonomousInit()
-    {
-        autonomousCommand = robotContainer.getAutonomousCommand();
-        
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null)
-        {
-            autonomousCommand.schedule();
-        }
-    }
-    
-    
+    public void autonomousInit() {}
+
     /** This method is called periodically during autonomous. */
     @Override
     public void autonomousPeriodic() {}
     
     
     @Override
-    public void teleopInit()
-    {
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null)
-        {
-            autonomousCommand.cancel();
-        }
-    }
+    public void teleopInit() {}
     
     
     /** This method is called periodically during operator control. */
@@ -103,14 +83,15 @@ public class Robot extends TimedRobot
     
     
     @Override
-    public void testInit()
-    {
-        // Cancels all running commands at the start of test mode.
-        CommandScheduler.getInstance().cancelAll();
-    }
+    public void testInit() {}
     
     
     /** This method is called periodically during test mode. */
     @Override
     public void testPeriodic() {}
+
+    public static DriveTrain getDriveTrain() {
+        if (driveTrain == null) driveTrain = new DriveTrain();
+        return driveTrain;
+    }
 }
