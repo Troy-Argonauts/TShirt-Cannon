@@ -54,6 +54,9 @@ public class DriveTrain extends SubsystemBase
         rearRight.configClosedloopRamp(Constants.DriveTrain.RAMP_SECONDS);
         rearLeft.configClosedloopRamp(Constants.DriveTrain.RAMP_SECONDS);
 
+        rearRight.follow(frontRight);
+        rearLeft.follow(frontLeft);
+
         frontLeft.setInverted(true);
         rearLeft.setInverted(InvertType.FollowMaster);
         frontRight.setInverted(false);
@@ -63,13 +66,10 @@ public class DriveTrain extends SubsystemBase
         frontRight.setNeutralMode(NeutralMode.Coast);
         rearLeft.setNeutralMode(NeutralMode.Coast);
         rearRight.setNeutralMode(NeutralMode.Coast);
-
-        rearRight.follow(frontRight);
-        rearLeft.follow(frontLeft);
     }
 
     public void cheesyDrive(double turn, double speed, double nerf) {
-        frontLeft.set(ControlMode.PercentOutput, (turn + speed) * nerf);
-        frontRight.set(ControlMode.PercentOutput, (turn - speed) * nerf);
+        frontLeft.set(ControlMode.PercentOutput, (speed - turn) * nerf);
+        frontRight.set(ControlMode.PercentOutput, (speed + turn) * nerf);
     }
 }

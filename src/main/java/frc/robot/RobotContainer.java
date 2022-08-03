@@ -30,7 +30,7 @@ public class RobotContainer {
     private void configureButtonBindings() {
         Robot.getDriveTrain().setDefaultCommand(
                 new RunCommand(() -> {
-                    Robot.getDriveTrain().cheesyDrive((driver.getRightJoystickX() * 0.5), driver.getLeftJoystickY(), 0.8);
+                    Robot.getDriveTrain().cheesyDrive(driver.getRightJoystickX(), driver.getLeftJoystickY(), 0.8);
                 }, Robot.getDriveTrain())
         );
     }

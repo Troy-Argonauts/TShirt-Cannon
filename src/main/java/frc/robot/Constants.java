@@ -7,11 +7,11 @@ package frc.robot;
 
 public final class Constants {
     public interface DriveTrain {
-        int FRONT_LEFT = 1;
-        int FRONT_RIGHT = 2;
-        int REAR_LEFT = 3;
-        int REAR_RIGHT = 4;
-        double RAMP_SECONDS = 0.75;
+        int FRONT_LEFT = 2;
+        int FRONT_RIGHT = 3;
+        int REAR_LEFT = 2;
+        int REAR_RIGHT = 1;
+        double RAMP_SECONDS = 0;
     }
 
     public interface Controller {
