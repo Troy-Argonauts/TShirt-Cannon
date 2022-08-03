@@ -18,20 +18,20 @@ import frc.libs.util.*;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
-public class RobotContainer
-{
+public class RobotContainer {
     public static ArgoController driver;
-    public RobotContainer()
-    {
+
+    public RobotContainer() {
         driver = new ArgoController(Constants.Controller.DRIVER_PORT);
 
         configureButtonBindings();
     }
 
-    private void configureButtonBindings()
-    {
+    private void configureButtonBindings() {
         Robot.getDriveTrain().setDefaultCommand(
-                new RunCommand(() ->
-                        Robot.getDriveTrain().cheesyDrive(driver.getRightJoystickX(), driver.getLeftJoystickY(), 0.5)));
+                new RunCommand(() -> {
+                    Robot.getDriveTrain().cheesyDrive((driver.getRightJoystickX() * 0.5), driver.getLeftJoystickY(), 0.8);
+                }, Robot.getDriveTrain())
+        );
     }
 }

@@ -10,23 +10,25 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase
 {
-    private TalonFX frontLeft, frontRight, rearLeft, rearRight;
+    private static TalonSRX frontLeft, frontRight, rearLeft, rearRight;
 
     public DriveTrain() {
-        frontLeft = new TalonFX(Constants.Drivetrain.FRONT_LEFT);
-        frontRight = new TalonFX(Constants.Drivetrain.FRONT_RIGHT);
-        rearLeft = new TalonFX(Constants.Drivetrain.REAR_LEFT);
-        rearRight = new TalonFX(Constants.Drivetrain.REAR_RIGHT);
+        frontLeft = new TalonSRX(Constants.DriveTrain.FRONT_LEFT);
+        frontRight = new TalonSRX(Constants.DriveTrain.FRONT_RIGHT);
+        rearLeft = new TalonSRX(Constants.DriveTrain.REAR_LEFT);
+        rearRight = new TalonSRX(Constants.DriveTrain.REAR_RIGHT);
 
         frontLeft.setSensorPhase(false);
         frontRight.setSensorPhase(false);
@@ -52,12 +54,6 @@ public class DriveTrain extends SubsystemBase
         rearRight.configClosedloopRamp(Constants.DriveTrain.RAMP_SECONDS);
         rearLeft.configClosedloopRamp(Constants.DriveTrain.RAMP_SECONDS);
 
-        frontRight.configIntegratedSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
-        frontLeft.configIntegratedSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
-
-        rearLeft.follow(frontLeft);
-        rearRight.follow(frontRight);
-
         frontLeft.setInverted(true);
         rearLeft.setInverted(InvertType.FollowMaster);
         frontRight.setInverted(false);
@@ -68,10 +64,12 @@ public class DriveTrain extends SubsystemBase
         rearLeft.setNeutralMode(NeutralMode.Coast);
         rearRight.setNeutralMode(NeutralMode.Coast);
 
+        rearRight.follow(frontRight);
+        rearLeft.follow(frontLeft);
     }
 
-    public static void cheesyDrive(double turn, double speed, double nerf) {
-        frontLeft.set(ControlMode.PercentOutput, (nerf + speed) * nerf);
-        frontRight.set(ControlMode.PercentOutput, (nerf - speed) * nerf);
+    public void cheesyDrive(double turn, double speed, double nerf) {
+        frontLeft.set(ControlMode.PercentOutput, (turn + speed) * nerf);
+        frontRight.set(ControlMode.PercentOutput, (turn - speed) * nerf);
     }
 }

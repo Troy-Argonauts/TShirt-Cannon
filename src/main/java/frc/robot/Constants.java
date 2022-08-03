@@ -6,7 +6,7 @@
 package frc.robot;
 
 public final class Constants {
-    public interface Drivetrain {
+    public interface DriveTrain {
         int FRONT_LEFT = 1;
         int FRONT_RIGHT = 2;
         int REAR_LEFT = 3;
