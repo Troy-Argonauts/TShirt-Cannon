@@ -18,4 +18,9 @@ public final class Constants {
         int DRIVER_PORT = 0;
         double CONTROLLER_DRIFT = 0.1;
     }
+
+    public interface Pneumatics {
+        int SOLENOID_1 = 0;
+        int SOLENOID_2 = 1;
+    }
 }

@@ -96,7 +96,7 @@ public class Robot extends TimedRobot
         return driveTrain;
     }
 
-    public static PneumaticsSystem getPnuematicsSystem() {
+    public static PneumaticsSystem getPneumaticsSystem() {
         if (pneumaticsSystem == null) pneumaticsSystem = new PneumaticsSystem();
         return pneumaticsSystem;
     }

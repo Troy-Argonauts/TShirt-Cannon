@@ -36,11 +36,11 @@ public class RobotContainer {
         );
 
         driver.getAButton().toggleWhenPressed(
-                new InstantCommand(() -> Robot.getPnuematicsSystem()::shoot)
+                new InstantCommand(Robot.getPneumaticsSystem()::shoot)
         );
 
         driver.getBButton().toggleWhenPressed(
-                new InstantCommand(() -> Robot.getPnuematicsSystem()::reset)
+                new InstantCommand(Robot.getPneumaticsSystem()::reset)
         );
     }
 }
