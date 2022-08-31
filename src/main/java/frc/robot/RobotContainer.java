@@ -7,6 +7,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.*;
 import frc.libs.util.*;
 
@@ -32,6 +33,14 @@ public class RobotContainer {
                 new RunCommand(() -> {
                     Robot.getDriveTrain().cheesyDrive(driver.getRightJoystickX(), driver.getLeftJoystickY(), 0.8);
                 }, Robot.getDriveTrain())
+        );
+
+        driver.getAButton().toggleWhenPressed(
+                new InstantCommand(() -> Robot.getPnuematicsSystem()::shoot)
+        );
+
+        driver.getBButton().toggleWhenPressed(
+                new InstantCommand(() -> Robot.getPnuematicsSystem()::reset)
         );
     }
 }

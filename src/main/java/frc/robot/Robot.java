@@ -22,6 +22,7 @@ public class Robot extends TimedRobot
 {
     private Command autonomousCommand;
     public static DriveTrain driveTrain;
+    public static PneumaticsSystem pneumaticsSystem;
     private RobotContainer robotContainer;
     
     
@@ -93,5 +94,10 @@ public class Robot extends TimedRobot
     public static DriveTrain getDriveTrain() {
         if (driveTrain == null) driveTrain = new DriveTrain();
         return driveTrain;
+    }
+
+    public static PneumaticsSystem getPnuematicsSystem() {
+        if (pneumaticsSystem == null) pneumaticsSystem = new PneumaticsSystem();
+        return pneumaticsSystem;
     }
 }
