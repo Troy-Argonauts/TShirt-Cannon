@@ -18,11 +18,10 @@ import frc.robot.subsystems.*;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot
-{
+public class Robot extends TimedRobot {
     private Command autonomousCommand;
-    public static DriveTrain driveTrain;
-    public static PneumaticsSystem pneumaticsSystem;
+    private static DriveTrain driveTrain;
+    private static PneumaticsSystem pneumaticsSystem;
     private RobotContainer robotContainer;
     
     
@@ -31,9 +30,9 @@ public class Robot extends TimedRobot
      * initialization code.
      */
     @Override
-    public void robotInit()
-    {
+    public void robotInit() {
         driveTrain = new DriveTrain();
+        pneumaticsSystem = new PneumaticsSystem();
         robotContainer = new RobotContainer();
     }
     
@@ -96,7 +95,7 @@ public class Robot extends TimedRobot
         return driveTrain;
     }
 
-    public static PneumaticsSystem getPneumaticsSystem() {
+    public static PneumaticsSystem getPneumatics() {
         if (pneumaticsSystem == null) pneumaticsSystem = new PneumaticsSystem();
         return pneumaticsSystem;
     }
