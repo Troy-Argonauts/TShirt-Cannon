@@ -23,8 +23,8 @@ public final class Constants {
         double CONTROLLER_DRIFT = 0.1;
     }
 
-    public interface Pneumatics {
-        int SOLENOID_1 = 0;
-        int SOLENOID_2 = 1;
-    }
+//    public interface Pneumatics {
+//        int SOLENOID_1 = 0;
+//        int SOLENOID_2 = 1;
+//    }
 }

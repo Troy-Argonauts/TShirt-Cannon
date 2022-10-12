@@ -13,9 +13,8 @@ public class PneumaticsSystem extends SubsystemBase {
 	public PneumaticsSystem() {
 		solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.Pneumatics.SOLENOID_1);
 		solenoid.close();
-		solenoid.set(false);
+//		solenoid.set(false);
 	}
-
 	public void set(boolean set) {
 		solenoid.set(set);
 	}

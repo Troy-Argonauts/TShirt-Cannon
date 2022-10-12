@@ -35,8 +35,10 @@ public class RobotContainer {
                     Robot.getDriveTrain().cheesyDrive(driver.getRightJoystickX(), driver.getLeftJoystickY(), 0.8);
                 }, Robot.getDriveTrain())
         );
-        driver.getAButton()
-                .whenHeld(new InstantCommand(() -> Robot.getPneumatics().set(true)))
-                .whenReleased(new InstantCommand(() -> Robot.getPneumatics().set(false)));
-    }
+
+        driver.getBButton()
+                .whenActive(new InstantCommand(() -> Robot.getPneumatics().set(true)))
+                .whenInactive(new InstantCommand(() -> Robot.getPneumatics().set(false)));
+        }
+
 }
