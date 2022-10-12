@@ -5,10 +5,7 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.InvertType;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.sensors.SensorInitializationStrategy;
@@ -71,5 +68,10 @@ public class DriveTrain extends SubsystemBase
     public void cheesyDrive(double turn, double speed, double nerf) {
         frontLeft.set(ControlMode.PercentOutput, (speed - turn) * nerf);
         frontRight.set(ControlMode.PercentOutput, (speed + turn) * nerf);
+    }
+
+    public void tankDrive(double left, double right, double nerf) {
+        frontLeft.set(ControlMode.PercentOutput, left * nerf);
+        frontRight.set(ControlMode.PercentOutput, right * nerf);
     }
 }
